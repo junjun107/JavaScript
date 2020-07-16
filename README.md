@@ -1,2 +1,2 @@
-# my-first-website
+# learn-to-code
 This is my simple todo list 
