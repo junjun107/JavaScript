@@ -1,2 +1,1 @@
-# learn-to-code
-This is my simple todo list 
+I'm learning JavaScript! 
