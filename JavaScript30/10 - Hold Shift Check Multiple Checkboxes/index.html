@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <style>
+
+    html {
+     
+      font-family: Verdana, sans-serif;
+      background:#ffc600;
+    }
+
+    .inbox {
+      max-width:400px;
+      margin:50px auto;
+      background:white;
+      border-radius:5px;
+      box-shadow:10px 10px 0 rgba(0,0,0,0.1);
+    }
+
+    .item {
+      display:flex;
+      align-items:center;
+      border-bottom: 1px solid #F1F1F1;
+    }
+
+    .item:last-child {
+      border-bottom:0;
+    }
+
+
+    input:checked + p {
+      background:#F9F9F9;
+      text-decoration: line-through;
+    }
+
+    input[type="checkbox"] {
+      margin:20px;
+    }
+
+    p {
+      margin:0;
+      padding:20px;
+      transition:background 0.2s;
+      flex:1;
+      font-family:'helvetica neue';
+      font-size: 20px;
+      font-weight: 200;
+      border-left: 1px solid #D1E2FF;
+    }
+
+    .details {
+      text-align: center;
+      font-size: 15px;
+    }
+
+    h1 {
+      
+      align-items:center;
+      justify-content: center;
+    }
+  </style>
+   <!--
+   The following is a common layout you would see in an email client.
+
+   When a user clicks a checkbox, holds Shift, and then clicks another checkbox a few rows down, all the checkboxes inbetween those two checkboxes should be checked.
+
+  -->
+<h1> The List </h1>
+  <div class='inbox'>
+    <div class='item'>
+      <input type="checkbox">
+      <p>This is an inbox layout1</p>
+    </div>
+    <div class='item'>
+      <input type="checkbox">
+      <p>This is an inbox layout2</p>
+    </div>
+    <div class='item'>
+      <input type="checkbox">
+      <p>This is an inbox layout3</p>
+    </div>
+    <div class='item'>
+      <input type="checkbox">
+      <p>This is an inbox layout4</p>
+    </div>
+    <div class='item'>
+      <input type="checkbox">
+      <p>This is an inbox layout5</p>
+    </div>
+    <div class='item'>
+      <input type="checkbox">
+      <p>This is an inbox layout6</p>
+    </div>
+    <div class='item'>
+      <input type="checkbox">
+      <p>This is an inbox layout7</p>
+    </div>
+    <div class='item'>
+      <input type="checkbox">
+      <p>This is an inbox layout8</p>
+    </div>
+    <div class='item'>
+      <input type="checkbox">
+      <p>This is an inbox layout9</p>
+    </div>
+    <div class='item'>
+      <input type="checkbox">
+      <p>This is an inbox layout10</p>
+    </div>
+
+  </div>
+  <script>
+   const boxes = document.querySelectorAll('input[type="checkbox"]');
+  
+   boxes.forEach(box => box.addEventListener('click', handleCheck));
+
+   function handleCheck(e){
+    let end; 
+    let inBetween = false
+   if(e.shiftKey && this.checked) {
+     boxes.forEach(box => {
+       if(box === this && box === end) {
+         inBetween = !inBetween
+       }
+     })
+   }
+    }
+   
+  </script>
+  </body>
+  </html>

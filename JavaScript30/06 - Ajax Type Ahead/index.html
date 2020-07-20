@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Type Ahead 👀</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <form class="search-form">
+    <input type="text" class="search" placeholder="City or State">
+    <ul class="suggestions">
+      <li>Filter for a city</li>
+      <li>or a state</li>
+    </ul>
+  </form>
+<script>
+const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+
+const cities = [];
+
+// const data = fetch(endpoint) ;
+// console.log(data)
+fetch(endpoint)
+  .then (blob => blob.json() )
+  .then (data => cities.push(...data))
+  
+
+function findMatches(wordToMatch, cities) {
+  return cities.filter(place => {
+    //here we need to figure out if the city or states matches with entered words
+    const regex = new RegExp(wordToMatch, 'gi');
+    return place.city.match(regex) || place.state.match(regex)//use regex to put a varible into a regular expression
+
+  })
+}
+
+const searchInput = document.querySelector('.search'); //select the input 
+const suggestions = document.querySelector('.suggestions'); //select the ul
+
+searchInput.addEventListener('change', displayMatches);  //run when input changes 
+searchInput.addEventListener('keyup', displayMatches); 
+
+function displayMatches() {
+  const matchArray = findMatches(this.value, cities);
+  const html = matchArray.map(place=>{
+    const regex = new RegExp(this.value, 'gi');
+    const cityName = place.city.replace(regex, `<span class="h1">${this.value}</span>`);
+    return `
+    <li>
+    <span class='name'> ${place.city},${place.state} </span> 
+    <span class="population"> ${place.population} </span>
+    </li>
+    `;
+  }).join("");
+  suggestions.innerHTML = html;
+}
+</script>
+  </body>
