@@ -1,1 +1,15 @@
+Hosted Project 
 https://junjun107.github.io/JavaScript/JavaScript30/01%20-%20JavaScript%20Drum%20Kit/index.html
+
+Ojective: Hit a list of keys on keyboard and it will 
+	1. Make a sound 
+	2. Trigger animation (popup font and yellow border)
+
+steps:
+set up data attribute and class name 'key' to all <kbd> keys.
+set up audio to keys
+listen to keydown events
+  i. Define audio and key varible
+  ii. play audio and animation
+  iii. add classList 'playing'
+ Reset
